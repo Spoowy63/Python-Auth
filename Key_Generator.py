@@ -10,7 +10,7 @@ b = int(input("how many passwords do you want: "))
 for i in range(b):
     c = randint(1000,99999)
     d = ''.join(choice(string.ascii_uppercase + string.ascii_lowercase) for _ in range(8))
-    if b is None:
+    if a is None:
         print(f"{d}{c}")
     else:
         print(f"{d}{c}{a}")
