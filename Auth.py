@@ -1,28 +1,53 @@
-from requests import *
-from re import *
-
-"""
-in your pastebin type it like this: Flip 76424553 Flop
-------------------------
-Flip is the username 
-76424553 is the id
-Flop is the password
-"""
-
-web = get("pastebin_Link_Here")
+import requests
+from re import split, search
+import mechanize
 
 
-usrn = str(input("Username: "))
-psw = str(input("Password: "))
-idi = str(input("ID: "))
-
-full1  = findall(rf"{usrn}.*{psw}", web.text)
-full = full1[0]
-
-
-id = str(full.split()[1])
-
-if ((usrn and psw in web.text) and (idi == id) and (id in full)):
-    print("success")
-else:
-    print("Not registered")
+def getData(pw):
+    try:
+        browser = mechanize.Browser()
+        browser.set_handle_robots(False)
+        cookies = mechanize.CookieJar()
+        browser.set_cookiejar(cookies)
+        browser.set_handle_refresh(False)
+    # you can base64 encode the link  if you want
+        url = 'https://pastebin.com/uT9v5yn3'
+        browser.open(url)
+        browser.select_form(nr = 0)
+        browser.form['PostPasswordVerificationForm[password]'] = pw
+        response = browser.submit()
+        return(response.read())
+    except:
+        raise SystemExit(0)
+        
+    
+def checks():
+    if (int(len(result) > 3)):
+        print("INVALID KEY ASK FOR A NEW KEY")
+        raise SystemExit(0)
+        
+    elif (int(len(result) == 3)):
+        dataReturned = getData(pw)
+        strData = str(dataReturned)
+        if search(r'\b' + combined_List_Items + r'\b', strData):
+            print("SUCCESS")
+            getData(pw)
+            #your function call here
+        else:
+            print("NOT REGISTERED/WRONG KEY")
+            
+    elif (int(len(result) == 2)):
+        if search(r'\b' + combined_List_Items + r'\b', strData):
+            print("SUCCESS")
+            getData(pw)
+            #your function call here             
+        else:
+            print("NOT REGISTERED/WRONG KEY")
+            
+            
+print("AUTH MADE BY github.com/Spoowy63")            
+key =  str(input("Enter Your Key: "))
+result = split(r'(-?\d*\.?\d+)', key)
+pw = result[2]
+combined_List_Items = result[0] + result[1]
+checks()
