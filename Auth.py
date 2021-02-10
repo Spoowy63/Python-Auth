@@ -2,8 +2,8 @@ from requests import *
 from re import *
 
 """
-in your pastebin type it like this: 
-Flip 76424553 Flop
+in your pastebin type it like this: Flip 76424553 Flop
+------------------------
 Flip is the username 
 76424553 is the id
 Flop is the password
