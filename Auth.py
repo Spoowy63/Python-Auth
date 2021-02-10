@@ -2,6 +2,11 @@ import requests
 from re import split, search
 import mechanize
 
+'''
+HOW TO MAKE KEYS:
+use the script thats in the same repository as this script. github.com/Spoowy
+
+'''
 
 def getData(pw):
     try:
